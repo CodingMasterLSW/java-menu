@@ -30,12 +30,13 @@ public class MenuController {
             String cannotEatMenu = inputView.inputCannotEatMenu();
             menuService.addUnavailableMenu(coach, cannotEatMenu);
         }
-        System.out.println("메뉴 추천 결과입니다");
-        List<Category> categories = menuService.recommendWeekCategory();
 
+        List<Category> categories = menuService.recommendWeekCategory();
+        outputView.printResultMessage();
+        outputView.printCategory(categories);
         for (Coach coach : coaches.getCoaches()) {
             List<String> recommendMenus = menuService.recommendMenus(coach, categories);
-            outputView.printRecommendMenus(recommendMenus);
+            outputView.printRecommendMenus(coach , recommendMenus);
         }
 
 
