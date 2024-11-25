@@ -18,5 +18,7 @@ public class MenuController {
 
     public void start() {
         inputView.printStartMessage();
+        inputView.printCoachInputMessage();
+        inputView.coachInput();
     }
 }

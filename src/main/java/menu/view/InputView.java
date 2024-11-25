@@ -8,6 +8,7 @@ public class InputView {
 
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String BLANK = "";
+    private static final String COACH_INPUT_MESSAGE = "코치의 이름을 입력해 주세요. (, 로 구분)";
 
     private InputView() {
     }
@@ -25,6 +26,14 @@ public class InputView {
     public void printStartMessage() {
         printMessage(START_MESSAGE);
         printMessage(BLANK);
+    }
+
+    public void printCoachInputMessage() {
+        printMessage(COACH_INPUT_MESSAGE);
+    }
+
+    public String coachInput() {
+        return userInput();
     }
 
     public void printMessage(String message) {
