@@ -19,9 +19,11 @@ public enum Category {
             ));
 
     private final List<String> menus;
+    private int cnt;
 
     Category(List<String> menus) {
         this.menus = menus;
+        this.cnt = 0;
     }
 
     public static Category decideCategory(int number) {

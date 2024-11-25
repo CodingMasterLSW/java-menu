@@ -1,6 +1,7 @@
 package menu.config;
 
 import menu.controller.MenuController;
+import menu.domain.CategoryResult;
 import menu.service.MenuService;
 import menu.utils.InputParser;
 import menu.view.InputView;
@@ -16,7 +17,7 @@ public class AppConfig {
     }
 
     public static MenuService createMenuService() {
-        return new MenuService(InputParser.create());
+        return new MenuService(InputParser.create(), CategoryResult.create());
     }
 
 }
