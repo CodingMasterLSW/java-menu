@@ -6,6 +6,9 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
+    private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
+    private static final String BLANK = "";
+
     private InputView() {
     }
 
@@ -17,6 +20,11 @@ public class InputView {
         String userInput = Console.readLine();
         validateInput(userInput);
         return userInput;
+    }
+
+    public void printStartMessage() {
+        printMessage(START_MESSAGE);
+        printMessage(BLANK);
     }
 
     public void printMessage(String message) {

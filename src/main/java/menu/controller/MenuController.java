@@ -15,4 +15,8 @@ public class MenuController {
         this.outputView = outputView;
         this.service = service;
     }
+
+    public void start() {
+        inputView.printStartMessage();
+    }
 }
