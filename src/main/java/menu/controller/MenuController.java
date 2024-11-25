@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.service.MenuService;
 import menu.view.InputView;
@@ -22,5 +23,9 @@ public class MenuController {
         inputView.printCoachInputMessage();
         String userInput = inputView.coachInput();
         Coaches coaches = menuService.createCoach(userInput);
+        for (Coach coach : coaches.getCoaches()) {
+            inputView.printCannotEatMenu(coach);
+            String cannotEatMenu = inputView.inputCannotEatMenu();
+        }
     }
 }

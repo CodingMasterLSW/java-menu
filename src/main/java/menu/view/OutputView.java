@@ -1,6 +1,9 @@
 package menu.view;
 
+
 public class OutputView {
+
+    private static final String BLANK = "";
 
     private OutputView() {
     }
