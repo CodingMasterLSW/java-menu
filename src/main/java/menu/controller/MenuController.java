@@ -27,5 +27,8 @@ public class MenuController {
             inputView.printCannotEatMenu(coach);
             String cannotEatMenu = inputView.inputCannotEatMenu();
         }
+        System.out.println("메뉴 추천 결과입니다");
+        String decideMenu = menuService.recommendMenu();
+        System.out.println(decideMenu);
     }
 }

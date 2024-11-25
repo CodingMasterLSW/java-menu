@@ -1,5 +1,6 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public enum Category {
@@ -16,4 +17,31 @@ public enum Category {
         this.menus = menus;
     }
 
+    public static Category decideCategory(int number) {
+        if (number == 1) {
+            return 일식;
+        }
+        if (number == 2) {
+            return 한식;
+        }
+
+        if (number == 3) {
+            return 중식;
+        }
+
+        if (number == 4) {
+            return 아시안;
+        }
+        return 양식;
+    }
+
+    public static String decideMenu(Category category) {
+        List<String> menus = category.getMenus();
+        List<String> shuffle = Randoms.shuffle(menus);
+        return shuffle.get(0);
+    }
+
+    public List<String> getMenus() {
+        return menus;
+    }
 }

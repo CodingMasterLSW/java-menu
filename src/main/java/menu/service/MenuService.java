@@ -2,9 +2,11 @@ package menu.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.utils.InputParser;
+import menu.utils.RandomNumber;
 
 public class MenuService {
 
@@ -24,6 +26,13 @@ public class MenuService {
         }
         coaches = Coaches.from(tmpCoaches);
         return coaches;
+    }
+
+    public String recommendMenu() {
+        int number = RandomNumber.generate();
+        Category category = Category.decideCategory(number);
+        String decideMenu = Category.decideMenu(category);
+        return decideMenu;
     }
 
 }
