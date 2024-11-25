@@ -33,7 +33,11 @@ public class MenuController {
         System.out.println("메뉴 추천 결과입니다");
         List<Category> categories = menuService.recommendWeekCategory();
 
-        System.out.println(categories);
+        for (Coach coach : coaches.getCoaches()) {
+            List<String> recommendMenus = menuService.recommendMenus(coach, categories);
+            outputView.printRecommendMenus(recommendMenus);
+        }
+
 
     }
 }

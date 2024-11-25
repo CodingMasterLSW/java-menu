@@ -24,4 +24,8 @@ public class Coach {
     public void addUnavailableMenu(String unavailableMenu){
         this.unavailableMenus.add(unavailableMenu);
     }
+
+    public boolean hasUnavailableMenus(String menu) {
+        return unavailableMenus.contains(menu);
+    }
 }

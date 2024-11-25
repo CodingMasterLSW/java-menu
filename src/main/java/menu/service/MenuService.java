@@ -39,6 +39,32 @@ public class MenuService {
         }
     }
 
+    private String recommendMenu(Coach coach, Category category) {
+        while (true) {
+            String decideMenu = Category.decideMenu(category);
+            if (coach.hasUnavailableMenus(decideMenu)) {
+                continue;
+            }
+            return decideMenu;
+        }
+    }
+
+    public List<String> recommendMenus(Coach coach, List<Category> recommendCategories) {
+        List<String> recommendMenus = new ArrayList<>();
+
+        for (Category category : recommendCategories) {
+            while(true) {
+                String recommendMenu = recommendMenu(coach, category);
+                if (recommendMenus.contains(recommendMenu)) {
+                    continue;
+                }
+                recommendMenus.add(recommendMenu);
+                break;
+            }
+        }
+        return recommendMenus;
+    }
+
     public List<Category> recommendWeekCategory() {
         List<Category> recommendCategories = new ArrayList<>();
         while (recommendCategories.size() != 5) {
