@@ -28,6 +28,13 @@ public class MenuService {
         return coaches;
     }
 
+    public void addUnavailableMenu(Coach coach, String userInput) {
+        List<String> tmpUnavailableMenus = inputParser.splitAndValidateUnavailableInput(userInput);
+        for (String unavailableMenu : tmpUnavailableMenus) {
+            coach.addUnavailableMenu(unavailableMenu);
+        }
+    }
+
     public String recommendMenu() {
         int number = RandomNumber.generate();
         Category category = Category.decideCategory(number);
