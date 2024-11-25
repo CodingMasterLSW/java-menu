@@ -1,11 +1,10 @@
 package menu.view;
 
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
+import menu.domain.Coaches;
 
 public class OutputView {
 
@@ -14,6 +13,7 @@ public class OutputView {
     private static final String MENU_RESULT_CLASSIFICATION = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     private static final String MENU_CATEGORY = "[ 카테고리 | %s ]";
     private static final String RECOMMEND_RESULT = "[ %s | %s ]";
+    private static final String RECOMMEND_FINISH_MESSAGE = "추천을 완료했습니다.";
 
     private OutputView() {
     }
@@ -40,9 +40,18 @@ public class OutputView {
         printMessage(BLANK);
     }
 
-    public void printRecommendMenus(Coach coach, List<String> recommendMenus) {
-        System.out.printf(RECOMMEND_RESULT, coach.getName(), String.join(" | ", recommendMenus));
+    public void printRecommendMenus(Coaches coaches) {
+        for (Coach coach : coaches.getCoaches()) {
+            List<String> recommendMenus = coach.getRecommendMenus();
+            System.out.printf(RECOMMEND_RESULT, coach.getName(), String.join(" | ", recommendMenus));
+            printMessage(BLANK);
+        }
         printMessage(BLANK);
+    }
+
+    public void printFinishMessage() {
+        printMessage(BLANK);
+        printMessage(RECOMMEND_FINISH_MESSAGE);
     }
 
     private void printMessage(String message) {

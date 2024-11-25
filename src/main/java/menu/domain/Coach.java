@@ -7,10 +7,12 @@ public class Coach {
 
     private final String name;
     private final List<String> unavailableMenus;
+    private final List<String> recommendMenus;
 
     private Coach(String name) {
         this.name = name;
         this.unavailableMenus = new ArrayList<>();
+        this.recommendMenus = new ArrayList<>();
     }
 
     public static Coach from(String name) {
@@ -27,5 +29,17 @@ public class Coach {
 
     public boolean hasUnavailableMenus(String menu) {
         return unavailableMenus.contains(menu);
+    }
+
+    public boolean hasMenu(String menu) {
+        return recommendMenus.contains(menu);
+    }
+
+    public void addRecommendMenu(String menu) {
+        this.recommendMenus.add(menu);
+    }
+
+    public List<String> getRecommendMenus() {
+        return recommendMenus;
     }
 }

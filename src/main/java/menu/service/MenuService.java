@@ -49,20 +49,19 @@ public class MenuService {
         }
     }
 
-    public List<String> recommendMenus(Coach coach, List<Category> recommendCategories) {
-        List<String> recommendMenus = new ArrayList<>();
-
+    public void recommendMenus(Coaches coaches, List<Category> recommendCategories) {
         for (Category category : recommendCategories) {
-            while(true) {
-                String recommendMenu = recommendMenu(coach, category);
-                if (recommendMenus.contains(recommendMenu)) {
-                    continue;
+            for (Coach coach : coaches.getCoaches()) {
+                while(true) {
+                    String recommendMenu = recommendMenu(coach, category);
+                    if (coach.hasMenu(recommendMenu)) {
+                        continue;
+                    }
+                    coach.addRecommendMenu(recommendMenu);
+                    break;
                 }
-                recommendMenus.add(recommendMenu);
-                break;
             }
         }
-        return recommendMenus;
     }
 
     public List<Category> recommendWeekCategory() {

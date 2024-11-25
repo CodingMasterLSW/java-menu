@@ -34,10 +34,9 @@ public class MenuController {
         List<Category> categories = menuService.recommendWeekCategory();
         outputView.printResultMessage();
         outputView.printCategory(categories);
-        for (Coach coach : coaches.getCoaches()) {
-            List<String> recommendMenus = menuService.recommendMenus(coach, categories);
-            outputView.printRecommendMenus(coach , recommendMenus);
-        }
+        menuService.recommendMenus(coaches, categories);
+        outputView.printRecommendMenus(coaches);
+        outputView.printFinishMessage();
 
 
     }
