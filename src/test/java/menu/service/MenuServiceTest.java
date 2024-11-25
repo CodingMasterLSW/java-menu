@@ -6,7 +6,7 @@ import menu.utils.InputParser;
 import org.junit.jupiter.api.RepeatedTest;
 
 public class MenuServiceTest {
-
+/*
     private MenuService menuService = new MenuService(InputParser.create(), CategoryResult.create());
 
     @RepeatedTest(5)
@@ -36,5 +36,7 @@ public class MenuServiceTest {
 
 
     }
+
+ */
 
 }

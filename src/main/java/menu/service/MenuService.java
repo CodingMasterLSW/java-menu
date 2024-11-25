@@ -39,7 +39,16 @@ public class MenuService {
         }
     }
 
-    public Category recommendCategory() {
+    public List<Category> recommendWeekCategory() {
+        List<Category> recommendCategories = new ArrayList<>();
+        while (recommendCategories.size() != 5) {
+            Category category = recommendCategory();
+            recommendCategories.add(category);
+        }
+        return recommendCategories;
+    }
+
+    private Category recommendCategory() {
         Category category;
         while (true) {
             int number = RandomNumber.generate();
@@ -50,7 +59,6 @@ public class MenuService {
             }
         }
         return category;
-
     }
 
 }

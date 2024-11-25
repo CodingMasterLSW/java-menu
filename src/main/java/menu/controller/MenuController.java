@@ -1,5 +1,7 @@
 package menu.controller;
 
+import java.util.List;
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.service.MenuService;
@@ -29,8 +31,9 @@ public class MenuController {
             menuService.addUnavailableMenu(coach, cannotEatMenu);
         }
         System.out.println("메뉴 추천 결과입니다");
-        //String decideMenu = menuService.recommendMenu();
-        //System.out.println(decideMenu);
+        List<Category> categories = menuService.recommendWeekCategory();
+
+        System.out.println(categories);
 
     }
 }
