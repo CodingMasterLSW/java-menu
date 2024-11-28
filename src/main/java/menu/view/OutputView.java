@@ -50,7 +50,6 @@ public class OutputView {
     }
 
     public void printFinishMessage() {
-        printMessage(BLANK);
         printMessage(RECOMMEND_FINISH_MESSAGE);
     }
 
