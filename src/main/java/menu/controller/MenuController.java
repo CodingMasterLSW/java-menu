@@ -1,6 +1,7 @@
 package menu.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
@@ -22,22 +23,46 @@ public class MenuController {
 
     public void start() {
         inputView.printStartMessage();
+        Coaches coaches = manageCoachNameInput();
+        manageCoachCannotEatMenu(coaches);
+        manageRecommendResult(coaches);
+    }
+
+    private Coaches manageCoachNameInput() {
         inputView.printCoachInputMessage();
-        String userInput = inputView.coachInput();
-        Coaches coaches = menuService.createCoach(userInput);
+        return retryOnInvalidInput(() -> {
+            String userInput = inputView.coachInput();
+            return menuService.createCoach(userInput);
+        });
+    }
+
+    private void manageCoachCannotEatMenu(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             inputView.printCannotEatMenu(coach);
-            String cannotEatMenu = inputView.inputCannotEatMenu();
-            menuService.addUnavailableMenu(coach, cannotEatMenu);
+            retryOnInvalidInput(() -> {
+                String cannotEatMenu = inputView.inputCannotEatMenu();
+                menuService.addUnavailableMenu(coach, cannotEatMenu);
+                return null;
+            });
         }
+    }
 
+    private void manageRecommendResult(Coaches coaches) {
         List<Category> categories = menuService.recommendWeekCategory();
         outputView.printResultMessage();
         outputView.printCategory(categories);
         menuService.recommendMenus(coaches, categories);
         outputView.printRecommendMenus(coaches);
         outputView.printFinishMessage();
+    }
 
-
+    private <T> T retryOnInvalidInput(Supplier<T> input) {
+        while (true) {
+            try {
+                return input.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
